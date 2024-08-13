@@ -47,15 +47,12 @@ Then you need to create an instance of `RoadRunner\Logger\Logger`
 
 ```PHP
 use Spiral\Goridge\RPC\RPC;
+use Spiral\RoadRunner\Environment;
 use RoadRunner\Logger\Logger;
 
 $rpc = RPC::create('tcp://127.0.0.1:6001');
 // or
-$rpc = RPC::fromGlobals();
-// or
-$rpc = RPC::fromEnvironment(new \Spiral\RoadRunner\Environment([
-    'RR_RPC' => 'tcp://127.0.0.1:6001'
-]));
+$rpc = RPC::create(Environment::fromGlobals()->getRPCAddress());
 
 $logger = new Logger($rpc);
 ```
